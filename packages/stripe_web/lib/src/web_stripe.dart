@@ -441,8 +441,6 @@ class WebStripe extends StripePlatform {
     );
     if (response.error != null) {
       throw response.error!;
-    } else {
-      return;
     }
   }
 
