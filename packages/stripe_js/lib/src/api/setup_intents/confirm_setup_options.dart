@@ -47,10 +47,25 @@ abstract class ConfirmSetupParams with _$ConfirmSetupParams {
     /// If collected previously, the ID of the ConfirmationToken to use to confirm this SetupIntent.
     /// This is mutually exclusive with the elements parameter.
     String? confirmation_token,
+
+    /// When you call stripe.confirmSetup, payment method data can be passed
+    /// along with the request to attach billing details to the payment method.
+    SetupPaymentMethodData? payment_method_data,
   }) = _ConfirmSetupParams;
 
   factory ConfirmSetupParams.fromJson(Map<String, dynamic> json) =>
       _$ConfirmSetupParamsFromJson(json);
+}
+
+@freezed
+abstract class SetupPaymentMethodData with _$SetupPaymentMethodData {
+  const factory SetupPaymentMethodData({
+    /// Billing details associated with the payment method.
+    BillingDetails? billing_details,
+  }) = _SetupPaymentMethodData;
+
+  factory SetupPaymentMethodData.fromJson(Map<String, dynamic> json) =>
+      _$SetupPaymentMethodDataFromJson(json);
 }
 
 /// By default, stripe.confirmPayment will always redirect to

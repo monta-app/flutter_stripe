@@ -37,10 +37,29 @@ _ConfirmSetupParams _$ConfirmSetupParamsFromJson(Map json) =>
     _ConfirmSetupParams(
       return_url: json['return_url'] as String,
       confirmation_token: json['confirmation_token'] as String?,
+      payment_method_data: json['payment_method_data'] == null
+          ? null
+          : SetupPaymentMethodData.fromJson(
+              Map<String, dynamic>.from(json['payment_method_data'] as Map),
+            ),
     );
 
 Map<String, dynamic> _$ConfirmSetupParamsToJson(_ConfirmSetupParams instance) =>
     <String, dynamic>{
       'return_url': instance.return_url,
       'confirmation_token': ?instance.confirmation_token,
+      'payment_method_data': ?instance.payment_method_data?.toJson(),
     };
+
+_SetupPaymentMethodData _$SetupPaymentMethodDataFromJson(Map json) =>
+    _SetupPaymentMethodData(
+      billing_details: json['billing_details'] == null
+          ? null
+          : BillingDetails.fromJson(
+              Map<String, dynamic>.from(json['billing_details'] as Map),
+            ),
+    );
+
+Map<String, dynamic> _$SetupPaymentMethodDataToJson(
+  _SetupPaymentMethodData instance,
+) => <String, dynamic>{'billing_details': ?instance.billing_details?.toJson()};

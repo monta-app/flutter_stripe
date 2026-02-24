@@ -422,10 +422,20 @@ class WebStripe extends StripePlatform {
   Future<void> confirmSetupElement(
     ConfirmSetupElementOptions options,
   ) async {
+    final confirmParams = options.billingDetails != null
+        ? stripe_js.ConfirmSetupParams(
+            return_url: options.confirmParams.return_url,
+            confirmation_token: options.confirmParams.confirmation_token,
+            payment_method_data: stripe_js.SetupPaymentMethodData(
+              billing_details: options.billingDetails!.toJs(),
+            ),
+          )
+        : options.confirmParams;
+
     final response = await js.confirmSetup(
       stripe_js.ConfirmSetupOptions(
         elements: elements!,
-        confirmParams: options.confirmParams,
+        confirmParams: confirmParams,
         redirect: options.redirect,
       ),
     );

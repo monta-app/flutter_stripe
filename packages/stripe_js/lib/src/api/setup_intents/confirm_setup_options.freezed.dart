@@ -334,7 +334,9 @@ mixin _$ConfirmSetupParams {
 /// The url your customer will be directed to after they complete authentication.
  String get return_url;/// If collected previously, the ID of the ConfirmationToken to use to confirm this SetupIntent.
 /// This is mutually exclusive with the elements parameter.
- String? get confirmation_token;
+ String? get confirmation_token;/// When you call stripe.confirmSetup, payment method data can be passed
+/// along with the request to attach billing details to the payment method.
+ SetupPaymentMethodData? get payment_method_data;
 /// Create a copy of ConfirmSetupParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -347,16 +349,16 @@ $ConfirmSetupParamsCopyWith<ConfirmSetupParams> get copyWith => _$ConfirmSetupPa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfirmSetupParams&&(identical(other.return_url, return_url) || other.return_url == return_url)&&(identical(other.confirmation_token, confirmation_token) || other.confirmation_token == confirmation_token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfirmSetupParams&&(identical(other.return_url, return_url) || other.return_url == return_url)&&(identical(other.confirmation_token, confirmation_token) || other.confirmation_token == confirmation_token)&&(identical(other.payment_method_data, payment_method_data) || other.payment_method_data == payment_method_data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,return_url,confirmation_token);
+int get hashCode => Object.hash(runtimeType,return_url,confirmation_token,payment_method_data);
 
 @override
 String toString() {
-  return 'ConfirmSetupParams(return_url: $return_url, confirmation_token: $confirmation_token)';
+  return 'ConfirmSetupParams(return_url: $return_url, confirmation_token: $confirmation_token, payment_method_data: $payment_method_data)';
 }
 
 
@@ -367,11 +369,11 @@ abstract mixin class $ConfirmSetupParamsCopyWith<$Res>  {
   factory $ConfirmSetupParamsCopyWith(ConfirmSetupParams value, $Res Function(ConfirmSetupParams) _then) = _$ConfirmSetupParamsCopyWithImpl;
 @useResult
 $Res call({
- String return_url, String? confirmation_token
+ String return_url, String? confirmation_token, SetupPaymentMethodData? payment_method_data
 });
 
 
-
+$SetupPaymentMethodDataCopyWith<$Res>? get payment_method_data;
 
 }
 /// @nodoc
@@ -384,14 +386,27 @@ class _$ConfirmSetupParamsCopyWithImpl<$Res>
 
 /// Create a copy of ConfirmSetupParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? return_url = null,Object? confirmation_token = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? return_url = null,Object? confirmation_token = freezed,Object? payment_method_data = freezed,}) {
   return _then(_self.copyWith(
 return_url: null == return_url ? _self.return_url : return_url // ignore: cast_nullable_to_non_nullable
 as String,confirmation_token: freezed == confirmation_token ? _self.confirmation_token : confirmation_token // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,payment_method_data: freezed == payment_method_data ? _self.payment_method_data : payment_method_data // ignore: cast_nullable_to_non_nullable
+as SetupPaymentMethodData?,
   ));
 }
+/// Create a copy of ConfirmSetupParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SetupPaymentMethodDataCopyWith<$Res>? get payment_method_data {
+    if (_self.payment_method_data == null) {
+    return null;
+  }
 
+  return $SetupPaymentMethodDataCopyWith<$Res>(_self.payment_method_data!, (value) {
+    return _then(_self.copyWith(payment_method_data: value));
+  });
+}
 }
 
 
@@ -473,10 +488,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String return_url,  String? confirmation_token)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String return_url,  String? confirmation_token,  SetupPaymentMethodData? payment_method_data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ConfirmSetupParams() when $default != null:
-return $default(_that.return_url,_that.confirmation_token);case _:
+return $default(_that.return_url,_that.confirmation_token,_that.payment_method_data);case _:
   return orElse();
 
 }
@@ -494,10 +509,10 @@ return $default(_that.return_url,_that.confirmation_token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String return_url,  String? confirmation_token)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String return_url,  String? confirmation_token,  SetupPaymentMethodData? payment_method_data)  $default,) {final _that = this;
 switch (_that) {
 case _ConfirmSetupParams():
-return $default(_that.return_url,_that.confirmation_token);case _:
+return $default(_that.return_url,_that.confirmation_token,_that.payment_method_data);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -514,10 +529,10 @@ return $default(_that.return_url,_that.confirmation_token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String return_url,  String? confirmation_token)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String return_url,  String? confirmation_token,  SetupPaymentMethodData? payment_method_data)?  $default,) {final _that = this;
 switch (_that) {
 case _ConfirmSetupParams() when $default != null:
-return $default(_that.return_url,_that.confirmation_token);case _:
+return $default(_that.return_url,_that.confirmation_token,_that.payment_method_data);case _:
   return null;
 
 }
@@ -529,7 +544,7 @@ return $default(_that.return_url,_that.confirmation_token);case _:
 @JsonSerializable()
 
 class _ConfirmSetupParams implements ConfirmSetupParams {
-  const _ConfirmSetupParams({required this.return_url, this.confirmation_token});
+  const _ConfirmSetupParams({required this.return_url, this.confirmation_token, this.payment_method_data});
   factory _ConfirmSetupParams.fromJson(Map<String, dynamic> json) => _$ConfirmSetupParamsFromJson(json);
 
 /// The url your customer will be directed to after they complete authentication.
@@ -537,6 +552,9 @@ class _ConfirmSetupParams implements ConfirmSetupParams {
 /// If collected previously, the ID of the ConfirmationToken to use to confirm this SetupIntent.
 /// This is mutually exclusive with the elements parameter.
 @override final  String? confirmation_token;
+/// When you call stripe.confirmSetup, payment method data can be passed
+/// along with the request to attach billing details to the payment method.
+@override final  SetupPaymentMethodData? payment_method_data;
 
 /// Create a copy of ConfirmSetupParams
 /// with the given fields replaced by the non-null parameter values.
@@ -551,16 +569,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfirmSetupParams&&(identical(other.return_url, return_url) || other.return_url == return_url)&&(identical(other.confirmation_token, confirmation_token) || other.confirmation_token == confirmation_token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfirmSetupParams&&(identical(other.return_url, return_url) || other.return_url == return_url)&&(identical(other.confirmation_token, confirmation_token) || other.confirmation_token == confirmation_token)&&(identical(other.payment_method_data, payment_method_data) || other.payment_method_data == payment_method_data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,return_url,confirmation_token);
+int get hashCode => Object.hash(runtimeType,return_url,confirmation_token,payment_method_data);
 
 @override
 String toString() {
-  return 'ConfirmSetupParams(return_url: $return_url, confirmation_token: $confirmation_token)';
+  return 'ConfirmSetupParams(return_url: $return_url, confirmation_token: $confirmation_token, payment_method_data: $payment_method_data)';
 }
 
 
@@ -571,11 +589,11 @@ abstract mixin class _$ConfirmSetupParamsCopyWith<$Res> implements $ConfirmSetup
   factory _$ConfirmSetupParamsCopyWith(_ConfirmSetupParams value, $Res Function(_ConfirmSetupParams) _then) = __$ConfirmSetupParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String return_url, String? confirmation_token
+ String return_url, String? confirmation_token, SetupPaymentMethodData? payment_method_data
 });
 
 
-
+@override $SetupPaymentMethodDataCopyWith<$Res>? get payment_method_data;
 
 }
 /// @nodoc
@@ -588,15 +606,317 @@ class __$ConfirmSetupParamsCopyWithImpl<$Res>
 
 /// Create a copy of ConfirmSetupParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? return_url = null,Object? confirmation_token = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? return_url = null,Object? confirmation_token = freezed,Object? payment_method_data = freezed,}) {
   return _then(_ConfirmSetupParams(
 return_url: null == return_url ? _self.return_url : return_url // ignore: cast_nullable_to_non_nullable
 as String,confirmation_token: freezed == confirmation_token ? _self.confirmation_token : confirmation_token // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,payment_method_data: freezed == payment_method_data ? _self.payment_method_data : payment_method_data // ignore: cast_nullable_to_non_nullable
+as SetupPaymentMethodData?,
   ));
 }
 
+/// Create a copy of ConfirmSetupParams
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SetupPaymentMethodDataCopyWith<$Res>? get payment_method_data {
+    if (_self.payment_method_data == null) {
+    return null;
+  }
 
+  return $SetupPaymentMethodDataCopyWith<$Res>(_self.payment_method_data!, (value) {
+    return _then(_self.copyWith(payment_method_data: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$SetupPaymentMethodData {
+
+/// Billing details associated with the payment method.
+ BillingDetails? get billing_details;
+/// Create a copy of SetupPaymentMethodData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SetupPaymentMethodDataCopyWith<SetupPaymentMethodData> get copyWith => _$SetupPaymentMethodDataCopyWithImpl<SetupPaymentMethodData>(this as SetupPaymentMethodData, _$identity);
+
+  /// Serializes this SetupPaymentMethodData to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SetupPaymentMethodData&&(identical(other.billing_details, billing_details) || other.billing_details == billing_details));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,billing_details);
+
+@override
+String toString() {
+  return 'SetupPaymentMethodData(billing_details: $billing_details)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SetupPaymentMethodDataCopyWith<$Res>  {
+  factory $SetupPaymentMethodDataCopyWith(SetupPaymentMethodData value, $Res Function(SetupPaymentMethodData) _then) = _$SetupPaymentMethodDataCopyWithImpl;
+@useResult
+$Res call({
+ BillingDetails? billing_details
+});
+
+
+$BillingDetailsCopyWith<$Res>? get billing_details;
+
+}
+/// @nodoc
+class _$SetupPaymentMethodDataCopyWithImpl<$Res>
+    implements $SetupPaymentMethodDataCopyWith<$Res> {
+  _$SetupPaymentMethodDataCopyWithImpl(this._self, this._then);
+
+  final SetupPaymentMethodData _self;
+  final $Res Function(SetupPaymentMethodData) _then;
+
+/// Create a copy of SetupPaymentMethodData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? billing_details = freezed,}) {
+  return _then(_self.copyWith(
+billing_details: freezed == billing_details ? _self.billing_details : billing_details // ignore: cast_nullable_to_non_nullable
+as BillingDetails?,
+  ));
+}
+/// Create a copy of SetupPaymentMethodData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$BillingDetailsCopyWith<$Res>? get billing_details {
+    if (_self.billing_details == null) {
+    return null;
+  }
+
+  return $BillingDetailsCopyWith<$Res>(_self.billing_details!, (value) {
+    return _then(_self.copyWith(billing_details: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [SetupPaymentMethodData].
+extension SetupPaymentMethodDataPatterns on SetupPaymentMethodData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SetupPaymentMethodData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SetupPaymentMethodData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SetupPaymentMethodData value)  $default,){
+final _that = this;
+switch (_that) {
+case _SetupPaymentMethodData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SetupPaymentMethodData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SetupPaymentMethodData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( BillingDetails? billing_details)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SetupPaymentMethodData() when $default != null:
+return $default(_that.billing_details);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( BillingDetails? billing_details)  $default,) {final _that = this;
+switch (_that) {
+case _SetupPaymentMethodData():
+return $default(_that.billing_details);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( BillingDetails? billing_details)?  $default,) {final _that = this;
+switch (_that) {
+case _SetupPaymentMethodData() when $default != null:
+return $default(_that.billing_details);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SetupPaymentMethodData implements SetupPaymentMethodData {
+  const _SetupPaymentMethodData({this.billing_details});
+  factory _SetupPaymentMethodData.fromJson(Map<String, dynamic> json) => _$SetupPaymentMethodDataFromJson(json);
+
+/// Billing details associated with the payment method.
+@override final  BillingDetails? billing_details;
+
+/// Create a copy of SetupPaymentMethodData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SetupPaymentMethodDataCopyWith<_SetupPaymentMethodData> get copyWith => __$SetupPaymentMethodDataCopyWithImpl<_SetupPaymentMethodData>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SetupPaymentMethodDataToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetupPaymentMethodData&&(identical(other.billing_details, billing_details) || other.billing_details == billing_details));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,billing_details);
+
+@override
+String toString() {
+  return 'SetupPaymentMethodData(billing_details: $billing_details)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SetupPaymentMethodDataCopyWith<$Res> implements $SetupPaymentMethodDataCopyWith<$Res> {
+  factory _$SetupPaymentMethodDataCopyWith(_SetupPaymentMethodData value, $Res Function(_SetupPaymentMethodData) _then) = __$SetupPaymentMethodDataCopyWithImpl;
+@override @useResult
+$Res call({
+ BillingDetails? billing_details
+});
+
+
+@override $BillingDetailsCopyWith<$Res>? get billing_details;
+
+}
+/// @nodoc
+class __$SetupPaymentMethodDataCopyWithImpl<$Res>
+    implements _$SetupPaymentMethodDataCopyWith<$Res> {
+  __$SetupPaymentMethodDataCopyWithImpl(this._self, this._then);
+
+  final _SetupPaymentMethodData _self;
+  final $Res Function(_SetupPaymentMethodData) _then;
+
+/// Create a copy of SetupPaymentMethodData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? billing_details = freezed,}) {
+  return _then(_SetupPaymentMethodData(
+billing_details: freezed == billing_details ? _self.billing_details : billing_details // ignore: cast_nullable_to_non_nullable
+as BillingDetails?,
+  ));
+}
+
+/// Create a copy of SetupPaymentMethodData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$BillingDetailsCopyWith<$Res>? get billing_details {
+    if (_self.billing_details == null) {
+    return null;
+  }
+
+  return $BillingDetailsCopyWith<$Res>(_self.billing_details!, (value) {
+    return _then(_self.copyWith(billing_details: value));
+  });
+}
 }
 
 // dart format on
