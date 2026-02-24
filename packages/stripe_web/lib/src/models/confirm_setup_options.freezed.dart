@@ -28,7 +28,7 @@ mixin _$ConfirmSetupElementOptions {
 /// your return_url after a successful confirmation.
 /// If you set redirect: "if_required", then stripe.confirmPayment
 /// will only redirect if your user chooses a redirect-based payment method.
- SetupConfirmationRedirect? get redirect; BillingDetails? get billingDetails;
+ SetupConfirmationRedirect? get redirect;
 /// Create a copy of ConfirmSetupElementOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -41,16 +41,16 @@ $ConfirmSetupElementOptionsCopyWith<ConfirmSetupElementOptions> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfirmSetupElementOptions&&(identical(other.confirmParams, confirmParams) || other.confirmParams == confirmParams)&&(identical(other.redirect, redirect) || other.redirect == redirect)&&(identical(other.billingDetails, billingDetails) || other.billingDetails == billingDetails));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfirmSetupElementOptions&&(identical(other.confirmParams, confirmParams) || other.confirmParams == confirmParams)&&(identical(other.redirect, redirect) || other.redirect == redirect));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,confirmParams,redirect,billingDetails);
+int get hashCode => Object.hash(runtimeType,confirmParams,redirect);
 
 @override
 String toString() {
-  return 'ConfirmSetupElementOptions(confirmParams: $confirmParams, redirect: $redirect, billingDetails: $billingDetails)';
+  return 'ConfirmSetupElementOptions(confirmParams: $confirmParams, redirect: $redirect)';
 }
 
 
@@ -61,11 +61,11 @@ abstract mixin class $ConfirmSetupElementOptionsCopyWith<$Res>  {
   factory $ConfirmSetupElementOptionsCopyWith(ConfirmSetupElementOptions value, $Res Function(ConfirmSetupElementOptions) _then) = _$ConfirmSetupElementOptionsCopyWithImpl;
 @useResult
 $Res call({
- ConfirmSetupParams confirmParams, SetupConfirmationRedirect? redirect, BillingDetails? billingDetails
+ ConfirmSetupParams confirmParams, SetupConfirmationRedirect? redirect
 });
 
 
-$ConfirmSetupParamsCopyWith<$Res> get confirmParams;$BillingDetailsCopyWith<$Res>? get billingDetails;
+$ConfirmSetupParamsCopyWith<$Res> get confirmParams;
 
 }
 /// @nodoc
@@ -78,12 +78,11 @@ class _$ConfirmSetupElementOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ConfirmSetupElementOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? confirmParams = null,Object? redirect = freezed,Object? billingDetails = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? confirmParams = null,Object? redirect = freezed,}) {
   return _then(_self.copyWith(
 confirmParams: null == confirmParams ? _self.confirmParams : confirmParams // ignore: cast_nullable_to_non_nullable
 as ConfirmSetupParams,redirect: freezed == redirect ? _self.redirect : redirect // ignore: cast_nullable_to_non_nullable
-as SetupConfirmationRedirect?,billingDetails: freezed == billingDetails ? _self.billingDetails : billingDetails // ignore: cast_nullable_to_non_nullable
-as BillingDetails?,
+as SetupConfirmationRedirect?,
   ));
 }
 /// Create a copy of ConfirmSetupElementOptions
@@ -94,18 +93,6 @@ $ConfirmSetupParamsCopyWith<$Res> get confirmParams {
   
   return $ConfirmSetupParamsCopyWith<$Res>(_self.confirmParams, (value) {
     return _then(_self.copyWith(confirmParams: value));
-  });
-}/// Create a copy of ConfirmSetupElementOptions
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$BillingDetailsCopyWith<$Res>? get billingDetails {
-    if (_self.billingDetails == null) {
-    return null;
-  }
-
-  return $BillingDetailsCopyWith<$Res>(_self.billingDetails!, (value) {
-    return _then(_self.copyWith(billingDetails: value));
   });
 }
 }
@@ -189,10 +176,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ConfirmSetupParams confirmParams,  SetupConfirmationRedirect? redirect,  BillingDetails? billingDetails)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ConfirmSetupParams confirmParams,  SetupConfirmationRedirect? redirect)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SetupPaymentElementOptions() when $default != null:
-return $default(_that.confirmParams,_that.redirect,_that.billingDetails);case _:
+return $default(_that.confirmParams,_that.redirect);case _:
   return orElse();
 
 }
@@ -210,10 +197,10 @@ return $default(_that.confirmParams,_that.redirect,_that.billingDetails);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ConfirmSetupParams confirmParams,  SetupConfirmationRedirect? redirect,  BillingDetails? billingDetails)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ConfirmSetupParams confirmParams,  SetupConfirmationRedirect? redirect)  $default,) {final _that = this;
 switch (_that) {
 case _SetupPaymentElementOptions():
-return $default(_that.confirmParams,_that.redirect,_that.billingDetails);case _:
+return $default(_that.confirmParams,_that.redirect);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -230,10 +217,10 @@ return $default(_that.confirmParams,_that.redirect,_that.billingDetails);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ConfirmSetupParams confirmParams,  SetupConfirmationRedirect? redirect,  BillingDetails? billingDetails)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ConfirmSetupParams confirmParams,  SetupConfirmationRedirect? redirect)?  $default,) {final _that = this;
 switch (_that) {
 case _SetupPaymentElementOptions() when $default != null:
-return $default(_that.confirmParams,_that.redirect,_that.billingDetails);case _:
+return $default(_that.confirmParams,_that.redirect);case _:
   return null;
 
 }
@@ -245,7 +232,7 @@ return $default(_that.confirmParams,_that.redirect,_that.billingDetails);case _:
 @JsonSerializable()
 
 class _SetupPaymentElementOptions implements ConfirmSetupElementOptions {
-  const _SetupPaymentElementOptions({required this.confirmParams, this.redirect, this.billingDetails});
+  const _SetupPaymentElementOptions({required this.confirmParams, this.redirect});
   factory _SetupPaymentElementOptions.fromJson(Map<String, dynamic> json) => _$SetupPaymentElementOptionsFromJson(json);
 
 /// Parameters that will be passed on to the Stripe API.
@@ -256,7 +243,6 @@ class _SetupPaymentElementOptions implements ConfirmSetupElementOptions {
 /// If you set redirect: "if_required", then stripe.confirmPayment
 /// will only redirect if your user chooses a redirect-based payment method.
 @override final  SetupConfirmationRedirect? redirect;
-@override final  BillingDetails? billingDetails;
 
 /// Create a copy of ConfirmSetupElementOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -271,16 +257,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetupPaymentElementOptions&&(identical(other.confirmParams, confirmParams) || other.confirmParams == confirmParams)&&(identical(other.redirect, redirect) || other.redirect == redirect)&&(identical(other.billingDetails, billingDetails) || other.billingDetails == billingDetails));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetupPaymentElementOptions&&(identical(other.confirmParams, confirmParams) || other.confirmParams == confirmParams)&&(identical(other.redirect, redirect) || other.redirect == redirect));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,confirmParams,redirect,billingDetails);
+int get hashCode => Object.hash(runtimeType,confirmParams,redirect);
 
 @override
 String toString() {
-  return 'ConfirmSetupElementOptions(confirmParams: $confirmParams, redirect: $redirect, billingDetails: $billingDetails)';
+  return 'ConfirmSetupElementOptions(confirmParams: $confirmParams, redirect: $redirect)';
 }
 
 
@@ -291,11 +277,11 @@ abstract mixin class _$SetupPaymentElementOptionsCopyWith<$Res> implements $Conf
   factory _$SetupPaymentElementOptionsCopyWith(_SetupPaymentElementOptions value, $Res Function(_SetupPaymentElementOptions) _then) = __$SetupPaymentElementOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- ConfirmSetupParams confirmParams, SetupConfirmationRedirect? redirect, BillingDetails? billingDetails
+ ConfirmSetupParams confirmParams, SetupConfirmationRedirect? redirect
 });
 
 
-@override $ConfirmSetupParamsCopyWith<$Res> get confirmParams;@override $BillingDetailsCopyWith<$Res>? get billingDetails;
+@override $ConfirmSetupParamsCopyWith<$Res> get confirmParams;
 
 }
 /// @nodoc
@@ -308,12 +294,11 @@ class __$SetupPaymentElementOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ConfirmSetupElementOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? confirmParams = null,Object? redirect = freezed,Object? billingDetails = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? confirmParams = null,Object? redirect = freezed,}) {
   return _then(_SetupPaymentElementOptions(
 confirmParams: null == confirmParams ? _self.confirmParams : confirmParams // ignore: cast_nullable_to_non_nullable
 as ConfirmSetupParams,redirect: freezed == redirect ? _self.redirect : redirect // ignore: cast_nullable_to_non_nullable
-as SetupConfirmationRedirect?,billingDetails: freezed == billingDetails ? _self.billingDetails : billingDetails // ignore: cast_nullable_to_non_nullable
-as BillingDetails?,
+as SetupConfirmationRedirect?,
   ));
 }
 
@@ -325,18 +310,6 @@ $ConfirmSetupParamsCopyWith<$Res> get confirmParams {
   
   return $ConfirmSetupParamsCopyWith<$Res>(_self.confirmParams, (value) {
     return _then(_self.copyWith(confirmParams: value));
-  });
-}/// Create a copy of ConfirmSetupElementOptions
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$BillingDetailsCopyWith<$Res>? get billingDetails {
-    if (_self.billingDetails == null) {
-    return null;
-  }
-
-  return $BillingDetailsCopyWith<$Res>(_self.billingDetails!, (value) {
-    return _then(_self.copyWith(billingDetails: value));
   });
 }
 }
